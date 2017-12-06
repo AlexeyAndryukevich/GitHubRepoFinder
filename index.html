@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+    <div class="container">
+
+        <h1 id="main-header">GitHub Repo <strong>Finder</strong></h1>
+
+        <div class="col-md-6 col-md-offset-3">
+
+            <form name="searchForm" class="input-group" novalidate ng-submit="findReposByName(repoNameInput, searchForm.$valid)">
+                <input type="text" id="search-input" class="form-control" placeholder="Enter repo's name" ng-model="repoNameInput" required>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Find!</button>
+                </span>
+            </form>
+
+            <div class="empty-search-field" ng-show="showEmptySearchFieldError">Search field must be filled!</div>
+
+            <div class="wrap-loader" ng-show="showLoading">
+                <div class="loader loader-pulser"></div>
+                <div class="search-message">Loading...</div>
+            </div>
+
+            <div class="search-message" ng-show="showNoResults">{{messageNoResults}}</div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <table class="table table-bordered table-hover" ng-show="showTableResult">
+                <tr class="info">
+                    <th>Project name</th>
+                    <th>Author</th>
+                    <th>Number of stars</th>
+                    <th class="hidden-sm hidden-xs">Number of issues</th>
+                    <th class="hidden-sm hidden-xs">Avatar</th>
+                    <th class="hidden-sm hidden-xs">Private or Public</th>
+                    <th class="hidden-sm hidden-xs">Link to repo</th>
+                </tr>
+                <tr ng-repeat="repo in reposData.data.items">
+                    <td>{{repo.name}}</td>
+                    <td>{{repo.owner.login}}</td>
+                    <td class="col-right-align">{{repo.stargazers_count}}</td>
+                    <td class="col-right-align hidden-sm hidden-xs">{{repo.has_issues ? repo.open_issues_count : "no issues"}}</td>
+                    <td class="col-center-align hidden-sm hidden-xs"><img src="{{repo.owner.avatar_url}}" alt="avatar" class="mini-avatar"></td>
+                    <td class="col-center-align hidden-sm hidden-xs">{{repo.private ? "private" : "public"}}</td>
+                    <td class="col-center-align hidden-sm hidden-xs"><a target="_blank" href="{{repo.html_url}}" class="btn btn-info">link</a></td>
+                </tr>
+            </table>
+
+            <div class="results-pagination" ng-show="showPagination">
+                <ul 
+                    uib-pagination 
+                    items-per-page="perPage"
+                    total-items="totalItems" 
+                    ng-model="currentPage" 
+                    ng-click="pageChanged()"
+                    max-size="5" 
+                    class="pagination-sm" 
+                    direction-links="false"
+                    boundary-links="true" 
+                    force-ellipses="true" 
+                    first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </div>
+
+            <div class="github-limit-message" ng-show="showGihubResultsLimit">{{messageGihubSearchLimit}}<br>{{messageTotalCountOfSearchResults}}</div>        
+
+            <div class="github-limit-message" ng-show="showGihubRateLimit">{{messageGihubRateLimit}}</div>
+
+        </div>
+    </div>
+</body>
+</html>

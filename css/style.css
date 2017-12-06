@@ -1,0 +1,170 @@
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif !important;
+    font-size: 14px;
+}
+
+.wrap {
+    display: flex;
+    height: 100%;
+}
+
+#main-header {
+    margin-top: calc(33vh - 70px);
+    transition: margin-top .5s ease-out;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+h1 strong {
+    color: #337ab7;
+}
+
+.empty-search-field {
+    color: red;
+}
+
+.search-message, 
+.github-limit-message {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.search-message {
+    margin-top: 10px;
+}
+
+.table {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    vertical-align: middle !important;
+    padding: 4px 8px !important;
+}
+
+td .btn {
+    padding: 2px 10px;
+}
+
+.mini-avatar {
+    height: 36px;
+    width: 36px;
+}
+
+.col-right-align {
+    text-align: right;
+    width: 135px;
+}
+
+.col-center-align {
+    text-align: center;
+    width: 125px;    
+}
+
+.results-pagination {
+    text-align: center;
+}
+
+.pagination {
+    margin: 10px 0; 
+}
+
+/* loader */
+.wrap-loader {
+    margin: 10px;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+  
+.loader {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 10px;
+    font-size: 10px;
+}
+  
+.loader-pulser {
+    width: 3.2em;
+    height: 3.2em;
+    right: 2em;
+    position: relative;
+}
+  
+.loader-pulser:before, .loader-pulser:after {
+    content: "";
+    border: 2px solid #337ab7;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    -webkit-animation: pulse 1s ease-out;
+            animation: pulse 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    opacity: 0;
+}
+
+.loader-pulser:before {
+    border: 2px solid #337ab7;
+    -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+}
+  
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+            transform: scale(0.1, 0.1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+        opacity: 0;
+    }
+}
+  
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+            transform: scale(0.1, 0.1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+        opacity: 0;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .github-limit-message {
+        font-size: 14px;
+    }
+}
